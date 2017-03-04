@@ -64,7 +64,7 @@ class Snake{
 			// Post: El darrer punt d'una serp en concret
 
 		// Escriptura
-		friend ostream& operator<<(ostream &os, /* FALTA: Que sacar. */);
+		friend ostream& operator<<(ostream &os, const Snake &s);
 		/* Pre: cert */
 		/* Post: s'ha mostrat l'estat del joc pel canal de sortida estandard */
 };
