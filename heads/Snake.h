@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include "Cami.h"
 using namespace std;
 
 class Snake{
@@ -7,6 +9,9 @@ class Snake{
 	
 	private:
 		// A la fase d'implementació i aniran els atributs privats
+		Cami c;
+		Bool crash;
+		int nSnake = 0;
 		
 	public:
 		// Constructors
