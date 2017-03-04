@@ -5,7 +5,7 @@ using namespace std;
 int main(){
   Punt p;
 
-  cout << "Ampada i altura rectangle: "
+  cout << "Amplada i altura rectangle: "
   cin << p;
 
   Snake s(p);
@@ -21,17 +21,22 @@ int main(){
 
 
     if (opcio == 'a' or opcio == 'w' or opcio == 'd' or opcio == 'x'){
-      
+
     } else if (opcio == n){
       Punt p_nou;
 
       cout << "Punt inicial: ";
       cin << p_nou;
 
-      if(s.searchPoint() and not s.pointBusy())   s.addSnake(p_nou);
+      /* ? */ if(s.searchPoint() and not s.pointBusy())   s.addSnake(p_nou);
+      /* Si se introduce en un punto donde ya hay serpiente debe parar,
+         si el punto esta fuera de rango (?). */
+
+      serp_actual = s.totalSnakes();
 
 
-    } else if (opcio >= 1){
+    } else if (opcio >= 49 and opcio <= 57){
+      serp_actual = int(opcio);
 
     }
 
