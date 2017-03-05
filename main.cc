@@ -15,7 +15,7 @@ int main(){
   int serp_actual = 0;
   bool stop = false;
   while (not stop){
-    cout << /* SALIDA DEL ESTADO DEL JUEGO */ << endl;
+    cout << s << endl;
     cout << "Opció: Allargar (a w d x), Nova (n), Canviar serp (enter): ";
     cin << opcio;
 
@@ -36,7 +36,7 @@ int main(){
 
 
     } else if (opcio >= 49 and opcio <= 57){
-      serp_actual = int(opcio);
+      if(int(opcio) <= s.totalSnakes())   serp_actual = int(opcio);
 
     }
 
