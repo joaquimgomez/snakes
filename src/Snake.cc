@@ -80,7 +80,7 @@ Punt Snake::lastPoint(Snake s) const {
 	// Pre: cert
 	// Post: el darrer punt d'una serp en concret
 	
-	return s.snakes[nSnake].punts[s.snakes[nSnake].nPunts];
+	return s.snakes[nSnake].punts[s.snakes[nSnake].nPunts]; // MODIFICAR.
 }
 
 
