@@ -12,11 +12,12 @@ Snake::~Snake(){
 	// Accions del destructor
 }
 
-void Snake::addSnake(Punt p) {
+void Snake::addSnake(Punt ext) {
 	// Pre: cert
 	// Post: Afegim nova serp que comença en el punt p
 
-	snakes.push_back(p);
+	snakes.push_back(Cami());
+	snakes[nSnakes].allargar(ext);
 	++nSnakes;
 
 }
@@ -29,7 +30,7 @@ void Snake::longSnake(Punt ext, int actualSnake) {
 
 }
 
-float Snake::boardWidth() const {
+int Snake::boardWidth() const {
 	// Pre: cert
 	// Post: El resultat de l'amplada del taulell
 
@@ -37,7 +38,7 @@ float Snake::boardWidth() const {
 
 }
 
-float Snake::boardHeight() const {
+int Snake::boardHeight() const {
 	// Pre: cert
 	// Post: El resultat de l'altura del taulell
 
@@ -49,7 +50,7 @@ int Snake::totalSnakes() const {
 	// Pre: cert
 	// Post: El resultat de les serps totals al taulell
 
-	return nSnake;
+	return nSnakes;
 
 }
 
@@ -74,8 +75,8 @@ bool Snake::pointBusy(Punt p) const {
 	unsigned int i = 0;
 	while (not ocupat and i < snakes.size()){
 		unsigned int j = 0;
-		while (not ocupat and j < snakes[i].size()){
-			if (p == snakes[i][j])	ocupat = true;
+		while (not ocupat and j < snakes[i].longitud()){
+			if (p == snakes[i].consultar_punt(j))	ocupat = true;
 		}
 	}
 
@@ -83,39 +84,38 @@ bool Snake::pointBusy(Punt p) const {
 
 }
 
-Punt Snake::lastPoint(Snake s, int actualSnake) const {
+Punt Snake::lastPoint(int actualSnake) const {
 	// Pre: cert
 	// Post: el darrer punt d'una serp en concret
 
-	return snakes[actualSnake].consultar_punt();
+	return snakes[actualSnake].consultar_punt(snakes[actualSnake].longitud() - 1);
 
 }
 
-ostream& operator<<(ostream &os, const Punt &p){
+ostream& operator<<(ostream &os, const Snake &s){
 
-	for (unsigned int i = p.coordenadax(); i > 0; --i){
-		for (unsigned int j = p.coordenaday; j > 0 ; --j){
+	for (unsigned int i = pMax.coordenadax(); i > 0; --i){
+		for (unsigned int j = pMax.coordenaday(); j > 0 ; --j){
 
-			if (i == 0 or j = 0 or i == p.coordenadax() or j = p.coordenaday()){
+			bool punt = false;
+			if (i == 0 or j == 0 or i == pMax.coordenadax() or j == pMax.coordenaday()){
 				os << "#";
 			} else {
-				bool punt = false;
 				unsigned int k = 0;
 				while(not punt and k < snakes.size()){
 					unsigned int z = 0;
-					while(not punt and z < snakes[k].size()){
-						if (snakes[k][z] == Punt(i, j))		punt = true;
+					while(not punt and z < snakes[k].longitud()){
+						if (snakes[k].consultar_punt(z) == Punt(i, j))		punt = true;
 						else	++z;
 					}
 					++k;
 				}
+			}
 
-				if (punt){
-					os << "*";
-				} else {
-					os << " ";
-				}
-
+			if (punt){
+				os << "*";
+			} else {
+				os << " ";
 			}
 
 		}
@@ -124,8 +124,6 @@ ostream& operator<<(ostream &os, const Punt &p){
 
 	}
 
-	return os;
-
-}
+		return os;
 
 }
