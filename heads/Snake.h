@@ -10,14 +10,13 @@ class Snake{
 	private:
 		// A la fase d'implementació i aniran els atributs privats
 		vector<Cami> snakes;
-		Bool crash;
 		int nSnake = 0;
 
 	public:
 		// Constructors
-		Snake();
+		/*Snake(); (?)
 			// Pre: cert
-			// Post: el resultat es un objecte Snake amb els valors per defecte
+			// Post: el resultat es un objecte Snake amb els valors per defecte */
 
 		Snake(Punt p);
 			// Pre: cert
@@ -30,20 +29,20 @@ class Snake{
 			// Post: esborra automàticament els objectes locals en sortir d'un àmbit de visibilitat
 
 		// Modificadors
-		void addSnake(Punt p);
+		void addSnake(Punt p_max);
 			// Pre: cert
 			// Post: Afegim una nova serp que comença en el punt p
 
-		void longSnake(Punt s);
+		void longSnake(Punt ext);
 			// Pre: cert
 			// Post: Allarguem una serp ja existent amb un punt
 
 		// Consultors
-		float boardWidth() const;
+		int boardWidth() const;
 			// Pre: cert
 			// Post: El resultat de l'amplada del taulell
 
-		float boardHeight() const;
+		int boardHeight() const;
 			// Pre: cert
 			// Post: El resultat de l'altura del taulell
 
@@ -59,7 +58,7 @@ class Snake{
 			// Pre: cert
 			// Post: Donarà true si el punt donat ja està ocupat per una serp al taulell
 
-		Punt lastPoint(Snake s) const;
+		Punt lastPoint(Snake s) const; // NO DEBERÍA SER UN CONST SIEMPRE Y CUANDO NO MODIFIQUE DICHO PUNTO.
 			// Pre: cert
 			// Post: El darrer punt d'una serp en concret
 
@@ -67,4 +66,5 @@ class Snake{
 		friend ostream& operator<<(ostream &os, const Snake &s);
 		/* Pre: cert */
 		/* Post: s'ha mostrat l'estat del joc pel canal de sortida estandard */
+
 };
