@@ -15,10 +15,6 @@ class Snake{
 
 	public:
 		// Constructors
-		/* Snake(); (?)
-			// Pre: cert
-			// Post: el resultat es un objecte Snake amb els valors per defecte */
-
 		Snake(Punt p);
 			// Pre: cert
 			/* Post: el resultat es un objecte Snake que a partir del punt p, crea un conjunt buit
@@ -34,7 +30,7 @@ class Snake{
 			// Pre: cert
 			// Post: Afegim una nova serp que comença en el punt p
 
-		void longSnake(Punt ext);
+		void longSnake(Punt ext, int actualSnake);
 			// Pre: cert
 			// Post: Allarguem una serp ja existent amb un punt
 
@@ -59,7 +55,7 @@ class Snake{
 			// Pre: cert
 			// Post: Donarà true si el punt donat ja està ocupat per una serp al taulell
 
-		Punt lastPoint(Snake s) const; // NO DEBERÍA SER UN CONST SIEMPRE Y CUANDO NO MODIFIQUE DICHO PUNTO.
+		Punt lastPoint(int actualSnake) const;
 			// Pre: cert
 			// Post: El darrer punt d'una serp en concret
 
