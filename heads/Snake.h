@@ -10,11 +10,12 @@ class Snake{
 	private:
 		// A la fase d'implementació i aniran els atributs privats
 		vector<Cami> snakes;
+		Punto pMax;
 		int nSnake = 0;
 
 	public:
 		// Constructors
-		/*Snake(); (?)
+		/* Snake(); (?)
 			// Pre: cert
 			// Post: el resultat es un objecte Snake amb els valors per defecte */
 
@@ -29,7 +30,7 @@ class Snake{
 			// Post: esborra automàticament els objectes locals en sortir d'un àmbit de visibilitat
 
 		// Modificadors
-		void addSnake(Punt p_max);
+		void addSnake(Punt ext);
 			// Pre: cert
 			// Post: Afegim una nova serp que comença en el punt p
 
