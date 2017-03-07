@@ -124,6 +124,6 @@ ostream& operator<<(ostream &os, const Snake &s){
 
 	}
 
-		return os;
+	return os;
 
 }
