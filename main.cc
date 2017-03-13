@@ -18,14 +18,14 @@ int main(){
 
   while (not stop){
     cout << s << endl;
-    cout << "Opció: Allargar (a w d z), Nova (n), Canviar serp (enter): ";
+    cout << "Opció: Allargar (a w s d), Nova (n), Canviar serp (enter): ";
     cin >> opcio;
 
 
-    if ((opcio == 'a' or opcio == 'w' or opcio == 'd' or opcio == 'z') and serp_actual >= 1){
+    if ((opcio == 'a' or opcio == 'w' or opcio == 's' or opcio == 'd') and serp_actual >= 1){
       if (opcio == 'a')   p_nou = s.lastPoint(serp_actual) + Punt(-1,0);
       else if (opcio == 'w')    p_nou = s.lastPoint(serp_actual) + Punt(0,1);
-      else if (opcio == 'd')    p_nou = s.lastPoint(serp_actual) + Punt(1,0);
+      else if (opcio == 's')    p_nou = s.lastPoint(serp_actual) + Punt(1,0);
       else    p_nou = s.lastPoint(serp_actual) + Punt(0,-1);
 
       if (s.searchPoint(p_nou) and not s.pointBusy(p_nou))  s.longSnake(p_nou, serp_actual);
