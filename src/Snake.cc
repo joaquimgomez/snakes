@@ -58,10 +58,11 @@ bool Snake::searchPoint(Punt p) const {
 	// Pre: cert
 	// Post: Donara true si el punt donat esta a l'interior de la frontera del rectangle
 
-	bool interior = true;
+	bool interior = false;
+	if (p.coordenadax() > 0 and p.coordenaday() > 0 and
+			p.coordenadax() < pMax.coordenadax() and p.coordenaday() < pMax.coordenaday())	interior = true;
 
-	if (p.coordenadax() < 0 or p.coordenadax() > pMax.coordenadax()
-			or p.coordenaday() < 0 or p.coordenaday() > pMax.coordenaday())		interior = false;
+	cout << "interior: " << interior << endl;
 
 	return interior;
 
@@ -95,10 +96,10 @@ Punt Snake::lastPoint(int actualSnake) const {
 ostream& operator<<(ostream &os, const Snake &s){
 
 	for (unsigned int i = s.pMax.coordenadax(); i > 0; --i){
-		for (unsigned int j = s.pMax.coordenaday(); j > 0 ; --j){
+		for (unsigned int j = s.pMax.coordenaday(); j > 0; --j){
 
 			bool punt = false;
-			if (i == 0 or j == 0 or i == s.pMax.coordenadax() or j == s.pMax.coordenaday()){
+			if (i == 1 or j == 1 or i == s.pMax.coordenadax() or j == s.pMax.coordenaday()){
 				os << "#";
 			} else {
 				unsigned int k = 0;
@@ -110,12 +111,13 @@ ostream& operator<<(ostream &os, const Snake &s){
 					}
 					++k;
 				}
-			}
 
-			if (punt){
-				os << "*";
-			} else {
-				os << " ";
+				if (punt){
+					os << "*";
+				} else {
+					os << " ";
+				}
+
 			}
 
 		}
