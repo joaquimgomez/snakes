@@ -11,7 +11,7 @@ class Snake{
 		// A la fase d'implementació i aniran els atributs privats
 		vector<Cami> snakes;
 		Punt pMax;
-		int nSnakes = 0;
+		int nSnakes;
 
 	public:
 		// Constructors

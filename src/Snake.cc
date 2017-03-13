@@ -94,18 +94,18 @@ Punt Snake::lastPoint(int actualSnake) const {
 
 ostream& operator<<(ostream &os, const Snake &s){
 
-	for (unsigned int i = pMax.coordenadax(); i > 0; --i){
-		for (unsigned int j = pMax.coordenaday(); j > 0 ; --j){
+	for (unsigned int i = s.pMax.coordenadax(); i > 0; --i){
+		for (unsigned int j = s.pMax.coordenaday(); j > 0 ; --j){
 
 			bool punt = false;
-			if (i == 0 or j == 0 or i == pMax.coordenadax() or j == pMax.coordenaday()){
+			if (i == 0 or j == 0 or i == s.pMax.coordenadax() or j == s.pMax.coordenaday()){
 				os << "#";
 			} else {
 				unsigned int k = 0;
-				while(not punt and k < snakes.size()){
+				while(not punt and k < s.snakes.size()){
 					unsigned int z = 0;
-					while(not punt and z < snakes[k].longitud()){
-						if (snakes[k].consultar_punt(z) == Punt(i, j))		punt = true;
+					while(not punt and z < s.snakes[k].longitud()){
+						if (s.snakes[k].consultar_punt(z) == Punt(i, j))		punt = true;
 						else	++z;
 					}
 					++k;
