@@ -62,6 +62,8 @@ bool Snake::searchPoint(Punt p) const {
 	bool interior = false;
 	if (p.coordenadax() < pMax.coordenadax() and p.coordenadax() > 0 and p.coordenaday() < pMax.coordenaday() and p.coordenaday() > 0)	interior = true;
 
+	//cout << "interior: " << interior << endl;
+
 	return interior;
 
 }
@@ -78,6 +80,8 @@ bool Snake::pointBusy(Punt p) const {
 
 	}
 
+	//cout << "ocupat: " << ocupat << endl;
+
 	return ocupat;
 
 }
@@ -86,20 +90,20 @@ Punt Snake::lastPoint(int actualSnake) const {
 	// Pre: cert
 	// Post: el darrer punt d'una serp en concret
 
-	return snakes[actualSnake].consultar_punt(snakes[actualSnake].longitud() /*- 1*/);
+	return snakes[actualSnake].consultar_punt(snakes[actualSnake].longitud());
 
 }
 
 ostream& operator<<(ostream &os, const Snake &s){
 
-	for (int i = s.pMax.coordenaday(); i >= 0; --i){
-		for (int j = s.pMax.coordenadax(); j >= 0; --j){
+	for (unsigned int j = 0; j <= s.pMax.coordenaday(); ++j){
+		for (unsigned int i = 0; i <= s.pMax.coordenadax(); ++i){
 
-			if (i == 0 or j == 0 or j == s.pMax.coordenadax() or i == s.pMax.coordenaday())		os << "#";
+			if (j == 0 or j == s.pMax.coordenaday() or i == 0 or i == s.pMax.coordenadax())		os << "#";
 			else {
 
 				if (s.pointBusy(Punt(i, j)))	os << "*";
-				else	os << " ";
+				else		os << " ";
 
 			}
 
