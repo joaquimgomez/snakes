@@ -9,9 +9,9 @@ class Snake{
 
 	private:
 		// A la fase d'implementació i aniran els atributs privats
+		int nSnakes;
 		vector<Cami> snakes;
 		Punt pMax;
-		int nSnakes;
 
 	public:
 		// Constructors

@@ -5,6 +5,7 @@ Snake::Snake(Punt p) {
 	// Post: el resultat es un objecte snake al punt p
 
 	pMax = p;
+	nSnakes = 0;
 
 }
 
@@ -59,10 +60,7 @@ bool Snake::searchPoint(Punt p) const {
 	// Post: Donara true si el punt donat esta a l'interior de la frontera del rectangle
 
 	bool interior = false;
-	if (p.coordenadax() > 0 and p.coordenaday() > 0 and
-			p.coordenadax() < pMax.coordenadax() and p.coordenaday() < pMax.coordenaday())	interior = true;
-
-	cout << "interior: " << interior << endl;
+	if (p.coordenadax() < pMax.coordenadax() and p.coordenadax() > 0 and p.coordenaday() < pMax.coordenaday() and p.coordenaday() > 0)	interior = true;
 
 	return interior;
 
@@ -70,15 +68,14 @@ bool Snake::searchPoint(Punt p) const {
 
 bool Snake::pointBusy(Punt p) const {
 	// Pre: cert
-	// Post: DonarÃ  true si el punt donat ja estÃ  ocupat per una serp al taulell
+	// Post: Donara true si el punt donat ja estÃ  ocupat per una serp al taulell
 
 	bool ocupat = false;
 	unsigned int i = 0;
-	while (not ocupat and i < snakes.size()){
-		unsigned int j = 0;
-		while (not ocupat and j < snakes[i].longitud()){
-			if (p == snakes[i].consultar_punt(j))	ocupat = true;
-		}
+	while (not ocupat and i < nSnakes){
+		if (snakes[i].conte_punt(p))	ocupat = true;
+		else	++i;
+
 	}
 
 	return ocupat;
@@ -89,34 +86,20 @@ Punt Snake::lastPoint(int actualSnake) const {
 	// Pre: cert
 	// Post: el darrer punt d'una serp en concret
 
-	return snakes[actualSnake].consultar_punt(snakes[actualSnake].longitud() - 1);
+	return snakes[actualSnake].consultar_punt(snakes[actualSnake].longitud() /*- 1*/);
 
 }
 
 ostream& operator<<(ostream &os, const Snake &s){
 
-	for (unsigned int i = s.pMax.coordenadax(); i > 0; --i){
-		for (unsigned int j = s.pMax.coordenaday(); j > 0; --j){
+	for (int i = s.pMax.coordenaday(); i >= 0; --i){
+		for (int j = s.pMax.coordenadax(); j >= 0; --j){
 
-			bool punt = false;
-			if (i == 1 or j == 1 or i == s.pMax.coordenadax() or j == s.pMax.coordenaday()){
-				os << "#";
-			} else {
-				unsigned int k = 0;
-				while(not punt and k < s.snakes.size()){
-					unsigned int z = 0;
-					while(not punt and z < s.snakes[k].longitud()){
-						if (s.snakes[k].consultar_punt(z) == Punt(i, j))		punt = true;
-						else	++z;
-					}
-					++k;
-				}
+			if (i == 0 or j == 0 or j == s.pMax.coordenadax() or i == s.pMax.coordenaday())		os << "#";
+			else {
 
-				if (punt){
-					os << "*";
-				} else {
-					os << " ";
-				}
+				if (s.pointBusy(Punt(i, j)))	os << "*";
+				else	os << " ";
 
 			}
 
