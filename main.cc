@@ -1,14 +1,14 @@
 #include <iostream>
-#include "Snake.h"
+#include "Snakes.h"
 using namespace std;
 
 int main(){
   Punt p;
 
-  cout << "Amplada i altura rectangle: ";
+  cout << "Amplada i altura rectangle: " << endl;
   cin >> p;
 
-  Snake s(p + Punt(-1,-1));
+  Snakes s(p + Punt(-1,-1));
 
 
   char opcio;
@@ -18,7 +18,7 @@ int main(){
 
   while (not stop){
     cout << s;
-    cout << "Opció: Allargar (a w d s), Nova (n), Canviar serp (enter): ";
+    cout << "Opció: Allargar (a w d s), Nova (n), Canviar serp (enter): " << endl;
     cin >> opcio;
 
 
@@ -34,7 +34,7 @@ int main(){
 
 
     } else if (opcio == 'n'){
-      cout << "Punt inicial: ";
+      cout << "Punt inicial: " << endl;
       cin >> p_nou;
 
 
@@ -45,12 +45,10 @@ int main(){
 
 
     } else if (opcio >= 49 and opcio <= 57 and serp_actual >= 1){
-      if(int(opcio) <= s.totalSnakes())   serp_actual = int(opcio) - 1; // REVISAR!
-
+      int snakeSeleccionada = int (opcio) - 49 ;
+      if(snakeSeleccionada < s.totalSnakes())   serp_actual = snakeSeleccionada + 1;
 
     }
-
-    cout << "Punt introduit: " << p_nou << endl;
 
 
   }
