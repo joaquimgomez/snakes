@@ -2,7 +2,7 @@
 
 Snakes::Snakes(Punt p) {
 	/* Pre: cert
-		 Post: el resultat es un objecte Snake que a partir del punt p,
+		 Post: el resultat es un objecte Snakes que a partir del punt p,
 					 crea un conjunt buit de camins dins del rectangle de vèrtexs (0,0) i (p.x, p.y) */
 
 	pMax = p;
@@ -11,7 +11,8 @@ Snakes::Snakes(Punt p) {
 }
 
 Snakes::~Snakes(){
-	/* Post: esborra automàticament els objectes locals en sortir d'un àmbit de visibilitat */
+	/* Post: esborra automaticament els objectes locals en sortir d'un ambit de visibilitat */
+
 }
 
 void Snakes::addSnake(Punt ext) {
@@ -26,7 +27,7 @@ void Snakes::addSnake(Punt ext) {
 }
 
 void Snakes::longSnake(Punt ext, int actualSnake) {
-	/* Pre: el punt ext que exten la serp ha de estar compres en el rang (0, 0) i (xmax, ymax); no ha de estar
+	/* Pre: el punt ext que exten la serp ha de estar compres en el rang (0, 0) i (xmax, ymax), no ha de estar
 					ocupat per cap serp i ha de ser un punt que la serp pugui agafar.
 					La serp actual ha de estar compresa en el rang 0 <= actualSnake <= nSkanes.
 		Post: allarguem una serp ja existent (actualSnake) amb el punt ext */
@@ -72,11 +73,13 @@ bool Snakes::searchPoint(Punt p) const {
 
 bool Snakes::pointBusy(Punt p) const {
 	/* Pre: cert
-		 Post: retornata true si el punt donat ja està ocupat per una serp al taulell */
+		 Post: retornata true si el punt donat ja esta ocupat per una serp al taulell */
 
 	bool ocupat = false;
 	unsigned int i = 0;
 	while (not ocupat and i < nSnakes){
+		// Inv: s'han analitzat i posicions del vector de snakes i encara no s'ha trobat el punt p
+
 		if (snakes[i].conte_punt(p))	ocupat = true;
 		else	++i;
 
@@ -99,7 +102,10 @@ ostream& operator<<(ostream &os, const Snakes &s){
 		 Post: es mostra l'estat del joc pel canal de sortida estandard */
 
 	for (unsigned int j = 0; j <= s.pMax.coordenaday(); ++j){
+		// Inv: s'ha tret pel canal estandard fins al punt y = j-1 per a 0 < j <= ymax
+
 		for (unsigned int i = 0; i <= s.pMax.coordenadax(); ++i){
+			// Inv: s'ha tret pel canal estandar fins al punt x = i i y = j-1 per a 0 < i <= xmax i 0 < j <=ymax
 
 			if (j == 0 or j == s.pMax.coordenaday() or i == 0 or i == s.pMax.coordenadax())		os << "#";
 			else {
