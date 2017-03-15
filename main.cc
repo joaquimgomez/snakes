@@ -22,7 +22,7 @@ int main(){
     // Inv: el joc no ha parat fins al moment
 
     cout << s;
-    cout << "Opcio: Allargar (a w d s), Nova (n), Canviar serp (enter): " << endl;
+    cout << "Opció: Allargar (a w d s), Nova (n), Canviar serp (enter): " << endl;
     cin >> opcio;
 
 
