@@ -9,16 +9,20 @@ int main(){
   cin >> p;
 
   Snakes s(p + Punt(-1,-1));
+  /* Al punt que rep la classe se li suma (-1,-1) per adecuarnos al conveni de que
+     el rang de les dimensions comença en (0,0) */
 
 
-  char opcio;
   int serp_actual = 0;
-  Punt p_nou;
   bool stop = false;
+  char opcio;
+  Punt p_nou;
 
   while (not stop){
+    // Inv: el joc no ha parat fins al moment
+
     cout << s;
-    cout << "Opció: Allargar (a w d s), Nova (n), Canviar serp (enter): " << endl;
+    cout << "Opcio: Allargar (a w d s), Nova (n), Canviar serp (enter): " << endl;
     cin >> opcio;
 
 
